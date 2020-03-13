@@ -28,7 +28,9 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    pass
+    rna_sequence=rna_sequence.upper()
+    if len(rna_sequence) <= 3 OR rna_sequence.startswith('UAA', 'UGG', 'UGA')
+    return 
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
