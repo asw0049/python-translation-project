@@ -30,10 +30,10 @@ def translate_sequence(rna_sequence, genetic_code):
     """
     rna_sequence=rna_sequence.upper()
     amino_acid =""
-    if len(rna_sequence)<3 or rna_sequence.startswith('UAA' or 'UAG' or 'UGA'):
-        return 
+    if len(rna_sequence)<3 or rna_sequence.startswith('UAA' or 'UAG' or 'UGA' or '*'):
+        print
     else:
-        for i in range(0, len(rna_sequence), 3):
+        for i in range(0, len(rna_sequence),3):
             codon = rna_sequence[i:i + 3]
             amino_acid+= genetic_code[codon]
     return amino_acid
