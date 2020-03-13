@@ -113,7 +113,9 @@ def reverse_and_complement(sequence):
     >>> reverse_and_complement('ATGC')
     'GCAT'
     """
-    pass
+    sequence=sequence.upper()
+    code = {'A' : 'U', 'U' : 'A', 'C' : 'G', 'G' : 'C'}
+    return ''.join(code[nucleotide] for nucleotide in sequence[::-1])
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.
