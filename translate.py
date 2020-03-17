@@ -75,15 +75,16 @@ def get_all_translations(rna_sequence, genetic_code):
     """
     rna_sequence=rna_sequence.upper()
     peptide= []
-    for i in range(0, len(rna_sequence),3):
+
+    for i in range (0,len(rna_sequence),3):
         codon=rna_sequence[i:i + 3]
         amino_acid= genetic_code.get(codon, '*')
-        if amino_acid != '*':
-            peptide += amino_acid
+        if amino_acid != "*":
+            peptide+=amino_acid
         else:
-            break
-    return peptide
+             break
 
+    return peptide
 
 
 def get_reverse(sequence):
