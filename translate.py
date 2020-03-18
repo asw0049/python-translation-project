@@ -86,8 +86,8 @@ def get_all_translations(rna_sequence, genetic_code):
             else:proteins += genetic_code[codon]
         return proteins
     """
-    for i in range(0, len(rna_sequence),3):
-        codon=rna_sequence[start:start + 3]
+    for i in range(start, len(rna_sequence),3):
+        codon=rna_sequence[i:i + 3]
         amino_acid= genetic_code.get(codon, '*')
         if amino_acid != '*':
             peptide += amino_acid
