@@ -47,7 +47,7 @@ def vet_nucleotide_sequence(sequence):
     ##########################################################################
     ############################ EDIT CODE BELOW #############################
     # `rna_pattern_str` and `dna_pattern_str` need to be regular expressions
-    # that will match any string of zero or more RNA and DNA bases,
+    # that will match any string of zero or more (means use *) RNA and DNA bases,
     # respectively (and only strings of zero or more RNA and DNA bases).
     # Currently, `rna_pattern_str` and `dna_pattern_str` are strings of literal
     # characters.
@@ -57,8 +57,10 @@ def vet_nucleotide_sequence(sequence):
     # any valid RNA and DNA sequence strings, respectively (and only strings of
     # RNA and DNA bases).
     # Read the docstring above for additional clues.
-    rna_pattern_str = r'AUCG'
-    dna_pattern_str = r'ATCG'
+    #rna_pattern_str = r'AUCG'
+    rna_pattern_str = r'[AUCG]*'
+    #dna_pattern_str = r'ATCG'
+    dna_pattern_str = r'[ATCG]*'
     ##########################################################################
 
     rna_pattern = re.compile(rna_pattern_str)
