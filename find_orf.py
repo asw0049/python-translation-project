@@ -98,7 +98,7 @@ def vet_codon(codon):
     >>> vet_codon('AUG') == None
     True
 
-    lower-case is also vaild 
+    lower-case is also vaild
     >>> vet_codon('aug') == None
     True
 
@@ -125,7 +125,7 @@ def vet_codon(codon):
     #REGEX should capture only RNA codons (so no T), be upper or lower case, and 3 bases long.
     # Read the docstring above for additional clues.
     #codon_pattern_str = r'AUG'
-    codon_pattern_str = r'(?!.*T)[AaUuCcGg]\{3\}'
+    codon_pattern_str = r'[?!.*Tt]AUG|aug'
     ##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
