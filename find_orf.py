@@ -122,8 +122,10 @@ def vet_codon(codon):
     # This is a valid regular expression, but it will only match 'AUG' exactly.
     # Change `codon_pattern_str` so that it will match any valid codons, and
     # only valid codons.
+    #REGEX should capture only RNA codons (so no T), be upper or lower case, and 3 bases long.
     # Read the docstring above for additional clues.
-    codon_pattern_str = r'AUG'
+    #codon_pattern_str = r'AUG'
+    codon_pattern_str = r'(?!.*T)[AaUuCcGg]\{3\}'
     ##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
