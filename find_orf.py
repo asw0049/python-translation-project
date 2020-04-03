@@ -58,9 +58,11 @@ def vet_nucleotide_sequence(sequence):
     # RNA and DNA bases).
     # Read the docstring above for additional clues.
     #rna_pattern_str = r'AUCG'
-    rna_pattern_str = r'[AUCG]*'
+    #rna_pattern_str = r'[AUCG](?!ACGT)*'
+    rna_pattern_str = r'(?!.*T)[AUCG]*'
     #dna_pattern_str = r'ATCG'
-    dna_pattern_str = r'[ATCG]*'
+    #dna_pattern_str = r'[ATCG](?!ACGU)*'
+    dna_pattern_str = r'(?!.*U)[ATCG]*'
     ##########################################################################
 
     rna_pattern = re.compile(rna_pattern_str)
