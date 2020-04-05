@@ -79,7 +79,7 @@ def vet_nucleotide_sequence(sequence):
 
 def vet_codon(codon):
     """
-    Return None if `codon` is a valid RNA codon, else raise an exception. 
+    Return None if `codon` is a valid RNA codon, else raise an exception.
 
     Parameters
     ----------
@@ -125,7 +125,7 @@ def vet_codon(codon):
     #REGEX should capture only RNA codons (so no T), be upper or lower case, and 3 bases long.
     # Read the docstring above for additional clues.
     #codon_pattern_str = r'AUG'
-    codon_pattern_str = r'[?!.*Tt]AUG|aug'
+    codon_pattern_str = r'(?!.Tt)^[AUCG]{3}$|^[aucg]{3}$'
     ##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
