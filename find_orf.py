@@ -215,7 +215,11 @@ def find_first_orf(sequence,
     # Read the docstring above for additional clues.
     #orf_pattern_str = r'AUGGUAUAA'
     #orf_pattern_str = r'(?!Tt)AUG[AUCG]*UAA|aug[aucg]*uaa'
-    orf_pattern_str = r'(?!Tt)(AUG|AAA)([AUCG]{3})*(UAA|UAG|UGA|UUU)|(aug|aaa)([aucg]{3})*(uaa|uag|uga|uuu)'
+    #orf_pattern_str = r'(?!Tt)(AUG|AAA)([AUCG]{3})*(UAA|UAG|UGA|UUU)|(aug|aaa)([aucg]{3})*(uaa|uag|uga|uuu)'
+    if start_codons == ['AUG']:
+        orf_pattern_str = r'(?!Tt)AUG([AUCG]{3})*(UAG|UGA|UAA)|aug([aucg]{3})*(uaa|uag|uga)'
+    else:
+        orf_pattern_str = r'(?!Tt)AAA([AUCG]{3})*UUU|aaa([aucg]{3})*uuu'
     ##########################################################################
 
     # Create the regular expression object
