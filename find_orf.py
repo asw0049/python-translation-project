@@ -215,7 +215,7 @@ def find_first_orf(sequence,
     # Read the docstring above for additional clues.
     #orf_pattern_str = r'AUGGUAUAA'
     #orf_pattern_str = r'(?!Tt)AUG[AUCG]*UAA|aug[aucg]*uaa'
-    orf_pattern_str = r'(?!.Tt)AUG([AUCG]{3})*(UAA|UAG|UGA)|aug([aucg]{3})*(uaa|uag|uga)'
+    orf_pattern_str = r'(?!Tt)(AUG|AAA)([AUCG]{3})*(UAA|UAG|UGA|UUU)|(aug|aaa)([aucg]{3})*(uaa|uag|uga|uuu)'
     ##########################################################################
 
     # Create the regular expression object
