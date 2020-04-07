@@ -38,7 +38,7 @@ def translate_sequence(rna_sequence, genetic_code):
             peptide += amino_acid
         else:
             break
-    print(peptide)
+    return peptide
 
     """return ''.join(amino_acid)"""
 
@@ -73,61 +73,22 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-    rna_sequence=rna_sequence.upper()
-    aa_list= []
-    start=rna_sequence.find('AUG')
-    peptide= []
-    for i in range (0, len(rna_sequence),3):
-        codon=rna_sequence[i:i+3]
-    def translate_RNA_codon(codon)
-        genetic_code[codon]
-    def translate(seq):
-        translation = ''
-        for n in range(0, len(rna_sequence) - len (rna_sequence) % 3), 3):
-            translation += translate_RNA_codon(seq[n:n+3]
-        return translation
-    def translate_in_frame(rna_seqquence, framenum):
-        return translate(rna_sequence[framenum-1:])
-    def print_translation_in_frame(rna_sequence, framenum, prefix):
-        print(prefix,
-            framenum,
-            ' '* framenum,
-            translate_in_frame(rna_sequence, framenum),
-            sep=' ')
-    def print_translations(rna_sequence, prefix=''):
-        print(' ', ' '
-        for framenum
-    """ def translate(start,rna_sequence, genetic_code):
-        proteins=''
-        for i in range(start,len(rna_sequence),3):
-            codon=rna_sequence[i:i+3]
-            if codon in ['UAG','UAA','UGA'] or len(codon)!=3:
-                break
-            else:proteins += genetic_code[codon]
-        return proteins
-    """
-    """for i in range(0, len(rna_sequence),3):
-        codon=rna_sequence[start:start + 3]
-        amino_acid= genetic_code.get(codon, '*')
-        if amino_acid != '*':
-            peptide += amino_acid
-        else:
-            break
-        return peptide
-    """
-
-    """while start<len(rna_sequence):
-        start=rna_sequence[start:start+3]
-        if start == 'AUG':
-            translation=translate(start,rna_sequence,genetic_code)
-            aa_list.append(translation)
-        start += 1
-    return aa_list
-    """
-
+    rna_sequence = rna_sequence.upper()
+    bases = len(rna_sequence)
+    index = bases - 3
+    if len(rna_sequence) < 3:
+        return ''
+    amino_acid_seq_list = []
+    for base_index in range(bases +1):
+        codon = rna_sequence[base_index: base_index +3]
+        if codon == "AUG":
+            aa_seq = translate_sequence(rna_sequence = rna_sequence[base_index:], genetic_code = genetic_code)
+            if aa_seq:
+                amino_acid_seq_list.append(aa_seq)
+    return amino_acid_seq_list
 
 def get_reverse(sequence):
-    """Reverse orientation of `sequence`.
+    """Reverse orientation of `sequence`
 
     Returns a string with `sequence` in the reverse order.
 
@@ -207,7 +168,21 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    peptides = get_all_translations(rna_sequence = rna_sequence, genetic_code = genetic_code)
+    rev_comp = reverse_and_complement(rna_sequence)
+    rev_tran = get_all_translations(rna_sequence = rev_comp, genetic_code = genetic_code)
+    peptides += rev_tran
+    if not peptides:
+        return ""
+    if len(peptides) < 2:
+        return peptides[0]
+    most_bases = -1
+    longest_peptide = -1
+    for peptide, aa_seq in enumerate(peptides):
+        if len(aa_seq) > most_bases:
+            longest_peptide = peptide
+            most_bases = len(aa_seq)
+    return peptides[longest_peptide]
 
 
 if __name__ == '__main__':
